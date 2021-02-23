@@ -1,5 +1,3 @@
-
-
 class maxima_minima:
     def __init__(self):
         self.root = None
@@ -26,10 +24,7 @@ class maxima_minima:
             elif (int(arr[-1]) == int(arr[mid])):
                 name = 'decreasing'
             return mid, name
-            # If middle element is not peak and
-            # its left neighbour is greater
-            # than it, then left half must
-            # have a peak element
+
         elif (mid > 0 and int(arr[mid - 1]) < int(arr[mid])):
             return self.findmin_max(arr, low, (mid - 1), n)
 
@@ -41,13 +36,16 @@ class maxima_minima:
             return self.findmin_max(arr, (mid + 1), high, n)
 
     # A wrapper over recursive
-    # function findPeakUtil()
+    # function findmin_max
     def find(self, arr, n):
         return self.findmin_max(arr, 0, n - 1, n)
 
+
+    # read input data from file inputPS10.txt
+    # write output data into outputPS10.txt
     def read_alldata(self):
         f = open("inputPS10.txt", "r")
-        file1 = open("outputPS13.txt", "w")
+        file1 = open("outputPS10.txt", "w")
         for x in f:
             arr = x.split()
             n = len(arr)
@@ -56,6 +54,7 @@ class maxima_minima:
             print(state, arr[index])
 
 
+# main function created object of maxima_minima class and call read all data_function
 if __name__ == '__main__':
     max_min =maxima_minima()
     max_min.read_alldata()
