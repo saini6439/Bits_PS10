@@ -11,11 +11,13 @@ class maxima_minima:
         # Compare middle element with its
         # neighbours (if neighbours exist)
 
+        # find for maxima in this case
         if ((mid == 0 or int(arr[mid - 1]) <= int(arr[mid])) and
                 (mid == n - 1 or int(arr[mid + 1]) <= int(arr[mid]))):
             name = 'maxima'
             return mid, name
 
+        # find for minima, increasing and decreasing in this case
         elif ((mid == 0 or int(arr[mid - 1]) >= int(arr[mid])) and
               (mid == n - 1 or int(arr[mid + 1]) >= int(arr[mid]))):
             name = 'minima'
@@ -25,18 +27,14 @@ class maxima_minima:
                 name = 'decreasing'
             return mid, name
 
+        # in these cases calling recursively
         elif (mid > 0 and int(arr[mid - 1]) < int(arr[mid])):
             return self.findmin_max(arr, low, (mid - 1), n)
 
-            # If middle element is not peak and
-            # its right neighbour is greater
-            # than it, then right half must
-            # have a peak element
         else:
             return self.findmin_max(arr, (mid + 1), high, n)
 
-    # A wrapper over recursive
-    # function findmin_max
+    # calling a recursive function findmin_max
     def find(self, arr, n):
         return self.findmin_max(arr, 0, n - 1, n)
 
@@ -44,17 +42,17 @@ class maxima_minima:
     # read input data from file inputPS10.txt
     # write output data into outputPS10.txt
     def read_alldata(self):
-        f = open("inputPS10.txt", "r")
-        file1 = open("outputPS10.txt", "w")
-        for x in f:
+        input_file = open("inputPS10.txt", "r")
+        output_file = open("outputPS10.txt", "w")
+        for x in input_file:
             arr = x.split()
             n = len(arr)
             index, state = self.find(arr, n)
-            file1.write(state+" "+arr[index]+"\n")
-            print(state, arr[index])
+            output_file.write(state+" "+arr[index]+"\n")
+        input_file.close() # input file closed
+        output_file.close() # output file closed
 
-
-# main function created object of maxima_minima class and call read all data_function
+# main function created object of maxima_minima class and call read_alldata() function
 if __name__ == '__main__':
     max_min =maxima_minima()
     max_min.read_alldata()
